@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shalem Raj — software engineer, full-stack & AI</title>
+<meta name="description" content="Shalem Raj, software engineer in Visakhapatnam. Full-stack, AI applications, CI/CD translation. The interactive version of my GitHub profile.">
+<style>
+/* One system, same tokens as the README cards */
+:root{
+  --paper:#0d1117; --paper-2:#161b22; --panel:rgba(8,8,12,.5);
+  --ink:#e6edf3; --ink-2:#8b949e; --rule:#30363d;
+  --accent:#58a6ff; --green:#39d353;
+  --t-display:44px; --t-title:28px; --t-lead:18px; --t-body:13px; --t-data:11.5px;
+  --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+  --r-card:20px; --r-panel:14px; --r-pill:999px;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{
+  margin:0; background:var(--paper); color:var(--ink); font:var(--t-body)/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(60% 40% at 12% 0%, rgba(88,166,255,.10), transparent 70%),
+                   radial-gradient(50% 40% at 88% 8%, rgba(57,211,83,.07), transparent 70%);
+  background-repeat:no-repeat;
+}
+::selection{background:rgba(88,166,255,.28); color:#fff}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+a{color:var(--accent); text-decoration:none; text-underline-offset:3px}
+a:hover{text-decoration:underline}
+
+.wrap{max-width:1120px; margin:0 auto; padding:var(--s7) var(--s5) var(--s6)}
+header.top{display:flex; flex-wrap:wrap; gap:var(--s4); align-items:flex-end;
+  justify-content:space-between; padding-bottom:var(--s5); border-bottom:1px solid var(--rule)}
+.handle{font:var(--t-data)/1 var(--mono); letter-spacing:2.4px; color:var(--ink-2);
+  text-transform:uppercase; margin:0 0 var(--s2)}
+h1{font-size:var(--t-display); line-height:1.02; letter-spacing:-1.6px; margin:0; font-weight:850}
+.role{font-size:var(--t-lead); font-weight:700; color:var(--accent); margin:var(--s2) 0 0}
+.meta{font:var(--t-data)/1.7 var(--mono); color:var(--ink-2)}
+.meta b{color:var(--ink); font-weight:600}
+
+.grid{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:var(--s5); margin-top:var(--s5)}
+@media (max-width:860px){ .grid{grid-template-columns:minmax(0,1fr)} }
+
+.card{background:var(--panel); border:1px solid var(--rule); border-radius:var(--r-card);
+  padding:var(--s5); backdrop-filter:blur(2px)}
+.card h2{font-size:var(--t-title); letter-spacing:-.6px; margin:0 0 var(--s4); font-weight:850}
+
+/* console rows */
+.row{display:flex; align-items:center; gap:var(--s3); padding:var(--s3) 0; border-top:1px solid var(--rule)}
+.row:first-of-type{border-top:0}
+.row .lab{flex:1; min-width:0; font:var(--t-data)/1.4 var(--mono); color:var(--ink-2);
+  letter-spacing:1.4px; text-transform:uppercase; position:relative; cursor:help}
+.tip{position:absolute; left:0; bottom:calc(100% + 6px); z-index:9; width:max-content; max-width:230px;
+  background:var(--paper-2); color:var(--ink); border:1px solid var(--rule); border-radius:8px;
+  padding:6px 8px; font:12px/1.45 var(--sans); letter-spacing:0; text-transform:none;
+  opacity:0; transform:translateY(3px) scale(.97); pointer-events:none;
+  transition:opacity .14s var(--out), transform .18s var(--spring)}
+.lab:hover .tip, .lab:focus-within .tip{opacity:1; transform:none; transition-delay:.08s}
+
+/* controls */
+.btn{appearance:none; border:1px solid var(--rule); background:#ffffff08; color:var(--ink);
+  font:600 var(--t-body)/1 var(--sans); padding:10px 14px; border-radius:var(--r-pill); cursor:pointer;
+  transition:transform .24s var(--spring), background .16s ease, border-color .16s ease}
+.btn:hover{background:#ffffff12; border-color:#4b5563; transform:translateY(-1px) scale(1.02)}
+.btn:active{transform:scale(.95); transition-duration:.08s}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:#04121f}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.45; cursor:not-allowed; transform:none}
+
+.sw{position:relative; width:52px; height:28px; border-radius:var(--r-pill); border:1px solid var(--rule);
+  background:#ffffff08; cursor:pointer; transition:background .2s ease}
+.sw i{position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%;
+  background:var(--ink-2); transition:transform .34s var(--spring), background .2s ease}
+.sw[aria-pressed="true"]{background:rgba(88,166,255,.28); border-color:var(--accent)}
+.sw[aria-pressed="true"] i{transform:translateX(24px) scale(1.06); background:var(--accent)}
+
+.chk{appearance:none; width:22px; height:22px; border:1px solid var(--rule); border-radius:7px;
+  background:#ffffff08; cursor:pointer; display:grid; place-items:center;
+  transition:transform .26s var(--spring), border-color .16s ease, background .16s ease}
+.chk:checked{background:var(--accent); border-color:var(--accent)}
+.chk:checked::after{content:""; width:11px; height:6px; border-left:2.2px solid #04121f;
+  border-bottom:2.2px solid #04121f; transform:rotate(-45deg) translateY(-1px);
+  animation:pop .34s var(--spring)}
+@keyframes pop{0%{transform:rotate(-45deg) scale(.2)}60%{transform:rotate(-45deg) scale(1.25)}
+  100%{transform:rotate(-45deg) scale(1)}}
+
+.radios{display:flex; gap:6px; flex-wrap:wrap}
+.radios input{position:absolute; opacity:0; width:0; height:0}
+.radios label{font:var(--t-data)/1 var(--mono); letter-spacing:1px; padding:8px 10px;
+  border:1px solid var(--rule); border-radius:var(--r-pill); cursor:pointer; color:var(--ink-2);
+  transition:transform .26s var(--spring), color .16s ease, border-color .16s ease, background .16s ease}
+.radios input:checked + label{color:#04121f; background:var(--accent); border-color:var(--accent);
+  transform:scale(1.05)}
+.radios input:focus-visible + label{outline:2px solid var(--accent); outline-offset:2px}
+
+.slider{appearance:none; width:100%; height:26px; background:transparent; cursor:grab}
+.slider:active{cursor:grabbing}
+.slider::-webkit-slider-runnable-track{height:6px; border-radius:3px;
+  background:linear-gradient(90deg, var(--accent) var(--fill,0%), #ffffff12 var(--fill,0%))}
+.slider::-webkit-slider-thumb{appearance:none; width:18px; height:18px; border-radius:50%;
+  background:var(--ink); margin-top:-6px; border:2px solid var(--paper);
+  transition:transform .2s var(--spring)}
+.slider:active::-webkit-slider-thumb{transform:scale(1.25)}
+.slider::-moz-range-track{height:6px; border-radius:3px; background:#ffffff12}
+.slider::-moz-range-thumb{width:16px; height:16px; border:2px solid var(--paper); border-radius:50%; background:var(--ink)}
+
+.field{appearance:none; width:100%; background:#ffffff06; border:1px solid var(--rule);
+  border-radius:var(--r-panel); color:var(--ink); font:var(--t-body)/1 var(--sans);
+  padding:11px 12px; transition:border-color .16s ease, box-shadow .2s ease}
+.field::placeholder{color:#6e7681}
+.field:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(88,166,255,.16); outline:none}
+
+.tabs{display:flex; gap:4px; border-bottom:1px solid var(--rule); margin-bottom:var(--s4)}
+.tab{appearance:none; background:none; border:0; border-bottom:2px solid transparent; color:var(--ink-2);
+  font:600 var(--t-body)/1 var(--sans); padding:10px 12px; cursor:pointer; position:relative;
+  transition:color .16s ease, transform .24s var(--spring)}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--accent)}
+.tab:active{transform:scale(.96)}
+
+.prog{height:6px; border-radius:3px; background:#ffffff10; overflow:hidden}
+.prog i{display:block; height:100%; width:0; border-radius:3px;
+  background:linear-gradient(90deg, var(--green), var(--accent));
+  transition:width 1.5s cubic-bezier(.22,1.4,.36,1)}
+.legend{display:flex; justify-content:space-between; font:var(--t-data)/1 var(--mono);
+  color:var(--ink-2); margin-top:6px; letter-spacing:1px}
+
+.rate{display:flex; gap:2px}
+.rate button{appearance:none; background:none; border:0; cursor:pointer; padding:2px; line-height:0;
+  color:#3d444d; transition:transform .26s var(--spring), color .16s ease}
+.rate button:hover{transform:scale(1.18) rotate(-4deg)}
+.rate button[aria-pressed="true"]{color:var(--accent)}
+.rate button[aria-pressed="true"] svg{animation:pop .4s var(--spring)}
+.rate svg{width:20px; height:20px; fill:currentColor}
+
+#toast{position:fixed; left:50%; bottom:24px; transform:translate(-50%, 140%);
+  background:var(--paper-2); border:1px solid var(--rule); color:var(--ink);
+  padding:11px 16px; border-radius:var(--r-pill); font:var(--t-body)/1 var(--sans);
+  box-shadow:0 12px 32px #0009; transition:transform .42s var(--spring); z-index:50;
+  display:flex; align-items:center; gap:8px}
+#toast.on{transform:translate(-50%,0)}
+#toast b{color:var(--green)}
+
+/* content */
+.list{display:grid; gap:10px}
+.item{border:1px solid var(--rule); border-radius:var(--r-panel); padding:var(--s4);
+  background:#ffffff04; transition:transform .28s var(--spring), border-color .16s ease, background .16s ease}
+.item:hover{transform:translateY(-2px); border-color:rgba(88,163,255,.5); background:#ffffff08}
+.item h3{margin:0 0 4px; font:700 var(--t-lead)/1.25 var(--mono); letter-spacing:-.2px; font-size:16px}
+.item p{margin:0; color:var(--ink-2)}
+.chips{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px}
+.chip{font:var(--t-data)/1 var(--mono); color:var(--ink-2); border:1px solid var(--rule);
+  border-radius:var(--r-pill); padding:5px 9px; letter-spacing:.6px}
+.chip.hot{color:var(--accent); border-color:rgba(88,166,255,.45)}
+
+.bars{display:grid; gap:12px}
+.bar-row{display:grid; grid-template-columns:150px 1fr 28px; gap:10px; align-items:center}
+.bar-row span{font:var(--t-data)/1 var(--mono); color:var(--ink-2); letter-spacing:1.2px}
+.bar-track{height:6px; border-radius:3px; background:#ffffff10; overflow:hidden}
+.bar-fill{display:block; height:100%; width:0; border-radius:3px; background:var(--accent);
+  transition:width 1.4s cubic-bezier(.22,1.4,.36,1)}
+.bar-row b{font:700 var(--t-data)/1 var(--mono); color:var(--accent); text-align:right}
+
+.timeline{display:grid; gap:var(--s4); border-left:1px solid var(--rule); padding-left:var(--s4)}
+.job{position:relative}
+.job::before{content:""; position:absolute; left:calc(-1 * var(--s4) - 5px); top:6px; width:9px; height:9px;
+  border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(88,166,255,.18)}
+.job h3{margin:0; font-size:16px; font-weight:700}
+.job .when{font:var(--t-data)/1.6 var(--mono); color:var(--ink-2); letter-spacing:1px; margin:2px 0 8px}
+.job ul{margin:0; padding-left:18px; color:var(--ink-2)}
+.job li{margin-bottom:4px}
+.hl{color:var(--ink); font-weight:600}
+
+.stats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:var(--s4)}
+.stat{border:1px solid var(--rule); border-radius:var(--r-panel); padding:12px}
+.stat b{display:block; font:850 24px/1 var(--sans); letter-spacing:-.8px}
+.stat span{font:var(--t-data)/1.3 var(--mono); color:var(--ink-2); letter-spacing:1.1px}
+
+#fx{position:fixed; inset:0; pointer-events:none; z-index:60}
+footer{max-width:1120px; margin:var(--s6) auto 0; padding-top:var(--s4);
+  border-top:1px solid var(--rule); color:var(--ink-2); font:var(--t-data)/1.8 var(--mono);
+  display:flex; gap:var(--s4); flex-wrap:wrap; justify-content:space-between}
+.motion-off *{animation:none !important; transition-duration:.001ms !important}
+@media (max-width:560px){
+  .wrap{padding:var(--s6) var(--s4) var(--s5)}
+  h1{font-size:34px; letter-spacing:-1.2px}
+  .bar-row{grid-template-columns:110px 1fr 26px}
+  .stats{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="handle">@rajshalem5</p>
+      <h1>Shalem Raj</h1>
+      <p class="role">Software engineer · full-stack &amp; AI</p>
+    </div>
+    <div class="meta">
+      VISAKHAPATNAM, INDIA<br>
+      <b>rajshalem72@gmail.com</b><br>
+      B.Tech IT · CGPA 8.69 / 10
+    </div>
+  </header>
+
+  <div class="grid">
+    <!-- console -->
+    <section class="card" aria-label="Controls">
+      <h2>Console</h2>
+
+      <div class="row">
+        <span class="lab" tabindex="0">Motion<span class="tip">Every effect here is CSS. Turn it off and the page goes completely still.</span></span>
+        <button class="sw" id="motion" aria-pressed="true" aria-label="Toggle motion"><i></i></button>
+      </div>
+
+      <div class="row">
+        <label class="lab" for="q">Find<span class="tip">Filters the list by name, description or language as you type.</span></label>
+      </div>
+      <div class="row" style="border:0;padding-top:0">
+        <input class="field" id="q" type="search" placeholder="rust, flask, parser…" autocomplete="off">
+      </div>
+
+      <div class="row">
+        <label class="lab" for="desc">Only described<span class="tip">Hides the repos that never got a description — you'll see why.</span></label>
+        <input class="chk" id="desc" type="checkbox">
+      </div>
+
+      <div class="row" style="display:block">
+        <span class="lab" style="display:block;margin-bottom:8px">Sort<span class="tip">Reorders the project list. Nothing here is ranked by anything you can buy.</span></span>
+        <div class="radios" role="radiogroup" aria-label="Sort projects">
+          <input type="radio" name="sort" id="s-recent" value="recent" checked><label for="s-recent">RECENT</label>
+          <input type="radio" name="sort" id="s-stars" value="stars"><label for="s-stars">STARS</label>
+          <input type="radio" name="sort" id="s-name" value="name"><label for="s-name">NAME</label>
+        </div>
+      </div>
+
+      <div class="row" style="display:block">
+        <span class="lab" style="display:block;margin-bottom:6px">Scrub the year<span class="tip">Drag across 368 days of contributions. The day under the thumb is reported below.</span></span>
+        <input class="slider" id="scrub" type="range" min="0" max="367" value="367" aria-label="Contribution day">
+        <div class="legend"><span id="scrubDate">—</span><span id="scrubCount">—</span></div>
+      </div>
+
+      <div class="row" style="display:block">
+        <span class="lab" style="display:block;margin-bottom:8px">Year loaded<span class="tip">Loads in surges, the way a real instrument settles.</span></span>
+        <div class="prog"><i id="prog"></i></div>
+        <div class="legend"><span>368 days</span><span id="progPct">0%</span></div>
+      </div>
+
+      <div class="row">
+        <span class="lab" tabindex="0">Bookmark<span class="tip">Saves to this browser only. Nothing is sent anywhere.</span></span>
+        <div class="rate" role="group" aria-label="Bookmark">
+          <button type="button" aria-pressed="false" data-mark="1" aria-label="1 star">★</button>
+          <button type="button" aria-pressed="false" data-mark="2" aria-label="2 stars">★</button>
+          <button type="button" aria-pressed="false" data-mark="3" aria-label="3 stars">★</button>
+          <button type="button" aria-pressed="false" data-mark="4" aria-label="4 stars">★</button>
+          <button type="button" aria-pressed="false" data-mark="5" aria-label="5 stars">★</button>
+        </div>
+      </div>
+
+      <div class="row" style="gap:8px">
+        <button class="btn primary" id="mail">Email me</button>
+        <button class="btn" id="copy">Copy address</button>
+      </div>
+    </section>
+
+    <!-- content -->
+    <section class="card" aria-label="Profile">
+      <div class="tabs" role="tablist" aria-label="Sections">
+        <button class="tab" role="tab" id="t-projects" aria-controls="p-projects" aria-selected="true">Projects</button>
+        <button class="tab" role="tab" id="t-stack" aria-controls="p-stack" aria-selected="false">Stack</button>
+        <button class="tab" role="tab" id="t-work" aria-controls="p-work" aria-selected="false">Work</button>
+      </div>
+
+      <div id="p-projects" role="tabpanel" aria-labelledby="t-projects">
+        <p class="meta" id="count" style="margin:0 0 12px"></p>
+        <div class="list" id="list"></div>
+      </div>
+
+      <div id="p-stack" role="tabpanel" aria-labelledby="t-stack" hidden>
+        <p class="meta" style="margin:0 0 14px">Tools listed per stack — counts of what is in the CV, not a rating.</p>
+        <div class="bars" id="bars"></div>
+      </div>
+
+      <div id="p-work" role="tabpanel" aria-labelledby="t-work" hidden>
+        <div class="timeline">
+          <div class="job">
+            <h3>Full Stack Engineer · Aegion Dynamic Solutions</h3>
+            <p class="when">JUL 2026 – PRESENT</p>
+            <ul>
+              <li><span class="hl">AnthyOS</span> — CI/CD translation: TeamCity and Jenkins pipelines become equivalent GitHub Actions workflows. Built the companion desktop app.</li>
+              <li>Execution <span class="hl">16m22s → 10m32s</span>, cost per run <span class="hl">$1.26 → $0.22</span>.</li>
+              <li><span class="hl">Ruchi</span> — AI voice kitchen companion: stateful multi-step agents on LangGraph, plus a TTS cache answering in ~0 ms against ~1200 ms.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>Python Full Stack Developer Intern · Coastal Seven Technologies</h3>
+            <p class="when">APR 2026</p>
+            <ul>
+              <li><span class="hl">Career Portal</span> — React, Flask, MySQL, REST: resume upload, parsing, AI scoring, candidate matching.</li>
+              <li><span class="hl">Hiring Factory</span> — Next.js, FastAPI, Supabase, PostgreSQL, JWT and RBAC across five roles.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="s-repos">—</b><span>PUBLIC REPOS</span></div>
+          <div class="stat"><b id="s-contrib">—</b><span>CONTRIBUTIONS</span></div>
+          <div class="stat"><b>8.69</b><span>CGPA / 10</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <span>Same data as the README cards, regenerated from the GitHub API.</span>
+    <span><a href="https://github.com/Rajshalem5">github.com/Rajshalem5</a></span>
+  </footer>
+</div>
+
+<div id="toast" role="status" aria-live="polite"><b>✓</b> <span id="toastText"></span></div>
+
+<script>
+const DATA = {"cells": [0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 4, 0, 0, 3, 0, 0, 10, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 10, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "start": "2025-11-23", "repos": [{"n": "RAG", "d": "", "l": "Python", "s": 0, "p": "2026-11-12", "u": "https://github.com/Rajshalem5/RAG"}, {"n": "quizlet", "d": "", "l": "JavaScript", "s": 0, "p": "2026-09-07", "u": "https://github.com/Rajshalem5/quizlet"}, {"n": "-harbor-log-report-fixed", "d": "", "l": "Python", "s": 0, "p": "2026-07-19", "u": "https://github.com/Rajshalem5/-harbor-log-report-fixed"}, {"n": "dharmafarms", "d": "", "l": "JavaScript", "s": 0, "p": "2026-07-04", "u": "https://github.com/Rajshalem5/dharmafarms"}, {"n": "Knowledge_Factory", "d": "", "l": "", "s": 0, "p": "2026-06-03", "u": "https://github.com/Rajshalem5/Knowledge_Factory"}, {"n": "RTIH-HACKATHON", "d": "", "l": "", "s": 0, "p": "2026-06-03", "u": "https://github.com/Rajshalem5/RTIH-HACKATHON"}, {"n": "Agents", "d": "", "l": "", "s": 1, "p": "2026-04-14", "u": "https://github.com/Rajshalem5/Agents"}, {"n": "RAG-WIKI", "d": "", "l": "", "s": 0, "p": "2026-04-11", "u": "https://github.com/Rajshalem5/RAG-WIKI"}, {"n": "NETFLIX-HOMEPAGE", "d": "", "l": "HTML", "s": 0, "p": "2026-04-03", "u": "https://github.com/Rajshalem5/NETFLIX-HOMEPAGE"}, {"n": "coastal7-internship", "d": "", "l": "", "s": 0, "p": "2026-04-02", "u": "https://github.com/Rajshalem5/coastal7-internship"}, {"n": "POS-FOR-COLLEGE-CANTEEN", "d": "\u26a1 Fast, offline Point-of-Sale system for college canteens built with PyQt6 and SQLite. Real-time billing, thermal printing, and inventory management for Windows.", "l": "Python", "s": 0, "p": "2025-11-16", "u": "https://github.com/Rajshalem5/POS-FOR-COLLEGE-CANTEEN"}, {"n": "n8n-cloud", "d": "", "l": "", "s": 0, "p": "2025-11-04", "u": "https://github.com/Rajshalem5/n8n-cloud"}, {"n": "Cafe-Niloufer", "d": "", "l": "HTML", "s": 0, "p": "2025-08-24", "u": "https://github.com/Rajshalem5/Cafe-Niloufer"}, {"n": "hi-hello", "d": "", "l": "Java", "s": 0, "p": "2025-04-06", "u": "https://github.com/Rajshalem5/hi-hello"}, {"n": "BBB-Quiz", "d": "", "l": "HTML", "s": 0, "p": "2025-03-06", "u": "https://github.com/Rajshalem5/BBB-Quiz"}, {"n": "git_test", "d": "", "l": "Java", "s": 0, "p": "2025-01-20", "u": "https://github.com/Rajshalem5/git_test"}, {"n": "JAVA", "d": "", "l": "Java", "s": 0, "p": "2025-01-06", "u": "https://github.com/Rajshalem5/JAVA"}, {"n": "T0-DO-LIST", "d": "", "l": "", "s": 0, "p": "2025-01-06", "u": "https://github.com/Rajshalem5/T0-DO-LIST"}, {"n": "oib_task4", "d": "", "l": "Python", "s": 0, "p": "2024-05-10", "u": "https://github.com/Rajshalem5/oib_task4"}, {"n": "oib_task3", "d": "", "l": "Python", "s": 0, "p": "2024-05-10", "u": "https://github.com/Rajshalem5/oib_task3"}, {"n": "oib_task2", "d": "", "l": "Python", "s": 0, "p": "2024-05-10", "u": "https://github.com/Rajshalem5/oib_task2"}, {"n": "oib_task1", "d": "", "l": "Python", "s": 0, "p": "2024-05-10", "u": "https://github.com/Rajshalem5/oib_task1"}, {"n": "library-management-system", "d": "", "l": "", "s": 1, "p": "2024-04-28", "u": "https://github.com/Rajshalem5/library-management-system"}, {"n": "RANDOM-PASSWORD-GENERATOR", "d": "", "l": "HTML", "s": 0, "p": "2024-04-10", "u": "https://github.com/Rajshalem5/RANDOM-PASSWORD-GENERATOR"}, {"n": "ANIMATED-PROFILE-CARD", "d": " Repository Description: Animated Profile Card This GitHub repo showcases an animated profile card built with HTML and CSS. Featuring smooth transitions and responsive design, it's customizable for various web projects. Easy to use and modify, it's ideal for developers of all levels. Contributions and feedback are welcomed.", "l": "CSS", "s": 0, "p": "2024-04-05", "u": "https://github.com/Rajshalem5/ANIMATED-PROFILE-CARD"}, {"n": "TO-DO-LIST-", "d": "", "l": "JavaScript", "s": 0, "p": "2024-04-05", "u": "https://github.com/Rajshalem5/TO-DO-LIST-"}, {"n": "LOGIN-FORM", "d": "", "l": "SCSS", "s": 0, "p": "2024-04-05", "u": "https://github.com/Rajshalem5/LOGIN-FORM"}, {"n": "PASSWORD-GENERATOR", "d": "", "l": "HTML", "s": 0, "p": "2024-04-05", "u": "https://github.com/Rajshalem5/PASSWORD-GENERATOR"}, {"n": "video-to-text-", "d": "", "l": "CSS", "s": 0, "p": "2024-03-26", "u": "https://github.com/Rajshalem5/video-to-text-"}]};
+
+/* ---------- helpers ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+const reduce = () => $('.motion-off');
+
+/* ---------- canvas VFX: impact bursts + slashes ---------- */
+const cv = $('#fx'), ctx = cv.getContext('2d');
+let parts = [];
+function fit() { cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+fit(); addEventListener('resize', fit);
+
+function burst(x, y, n = 10, color = '#58a6ff') {
+  if (reduce()) return;
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + Math.random() * .3, sp = 2.4 + Math.random() * 3.4;
+    parts.push({kind:'ray', x, y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp, life: 1, color});
+  }
+  for (let i = 0; i < 6; i++) parts.push({kind:'dot', x, y, vx:(Math.random()-.5)*2.4, vy:(Math.random()-.5)*2.4, r:1.2+Math.random()*1.6, life:1, color:'#e6edf3'});
+  loop();
+}
+function slash(x1, y1, x2, y2) {
+  if (reduce()) return;
+  parts.push({kind:'slash', x1, y1, x2, y2, life:1, color:'#e6edf3'});
+  loop();
+}
+let raf = 0;
+function loop() {
+  if (raf) return;
+  raf = requestAnimationFrame(step);
+  function step() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    parts = parts.filter(p => p.life > 0);
+    for (const p of parts) {
+      p.life -= p.kind === 'slash' ? .07 : .022;
+      ctx.globalAlpha = Math.max(p.life, 0);
+      ctx.strokeStyle = p.color; ctx.fillStyle = p.color;
+      if (p.kind === 'ray') {
+        p.x += p.vx; p.y += p.vy; p.vx *= .93; p.vy *= .93;
+        ctx.lineWidth = 2; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - p.vx * 3, p.y - p.vy * 3); ctx.stroke();
+      } else if (p.kind === 'dot') {
+        p.x += p.vx; p.y += p.vy;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r * p.life, 0, 7); ctx.fill();
+      } else {
+        ctx.lineWidth = 9 * p.life; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+    if (parts.length) raf = requestAnimationFrame(step);
+    else { ctx.clearRect(0, 0, innerWidth, innerHeight); raf = 0; }
+  }
+}
+
+/* ---------- state ---------- */
+const S = { q: '', desc: false, sort: 'recent', tab: 'projects' };
+
+/* ---------- projects ---------- */
+function renderProjects() {
+  const q = S.q.trim().toLowerCase();
+  let rows = DATA.repos.filter(r =>
+    (!S.desc || r.d) &&
+    (!q || (r.n + ' ' + r.d + ' ' + r.l).toLowerCase().includes(q)));
+  const by = { recent: (a,b) => b.p.localeCompare(a.p), stars: (a,b) => b.s - a.s || b.p.localeCompare(a.p), name: (a,b) => a.n.localeCompare(b.n) };
+  rows.sort(by[S.sort]);
+
+  const list = $('#list'); list.textContent = '';
+  $('#count').textContent = `${rows.length} of ${DATA.repos.length} public repositories`;
+  if (!rows.length) {
+    const empty = el('div', 'item');
+    empty.append(el('h3', null, 'Nothing matches'), el('p', null, 'Clear the search or untick “only described”.'));
+    list.append(empty);
+    return;
+  }
+  for (const r of rows.slice(0, 12)) {
+    const a = el('a', 'item');
+    a.href = r.u; a.target = '_blank'; a.rel = 'noreferrer noopener';
+    a.append(el('h3', null, r.n));
+    if (r.d) a.append(el('p', null, r.d));
+    const chips = el('div', 'chips');
+    if (r.l) chips.append(el('span', 'chip hot', r.l));
+    chips.append(el('span', 'chip', `★ ${r.s}`));
+    chips.append(el('span', 'chip', `pushed ${r.p}`));
+    a.append(chips);
+    a.addEventListener('click', e => burst(e.clientX, e.clientY, 8));
+    list.append(a);
+  }
+}
+
+/* ---------- stack bars ---------- */
+const STACK = [['PROGRAMMING',6],['FRONTEND',2],['BACKEND',4],['DATA / SQL',7],['AI / GENAI',9],['CLOUD / DEVOPS',8],['DELIVERY',6]];
+const maxStack = Math.max(...STACK.map(s => s[1]));
+function renderStack() {
+  const box = $('#bars'); box.textContent = '';
+  for (const [name, n] of STACK) {
+    const row = el('div', 'bar-row');
+    row.append(el('span', null, name));
+    const track = el('div', 'bar-track'), fill = el('i', 'bar-fill');
+    track.append(fill); row.append(track, el('b', null, String(n).padStart(2, '0')));
+    box.append(row);
+    requestAnimationFrame(() => { fill.style.width = (n / maxStack * 100) + '%'; });
+  }
+}
+
+/* ---------- tabs ---------- */
+const TABS = { projects: 'p-projects', stack: 'p-stack', work: 'p-work' };
+function showTab(name) {
+  S.tab = name;
+  for (const [k, id] of Object.entries(TABS)) {
+    $('#' + id).hidden = k !== name;
+    const t = $('#t-' + k);
+    t.setAttribute('aria-selected', String(k === name));
+    t.tabIndex = k === name ? 0 : -1;
+  }
+  if (name === 'stack') renderStack();
+  const btn = $('#t-' + name).getBoundingClientRect();
+  slash(btn.left, btn.bottom + 30, btn.right + 120, btn.bottom - 10);
+}
+
+/* ---------- scrub + progress + toast ---------- */
+const start = new Date(DATA.start + 'T00:00:00');
+function renderScrub(v) {
+  const d = new Date(start.getTime() + v * 864e5);
+  $('#scrubDate').textContent = d.toISOString().slice(0, 10);
+  const c = DATA.cells[v] || 0;
+  $('#scrubCount').textContent = c === 0 ? 'no contributions' : `${c} contribution${c > 1 ? 's' : ''}`;
+  $('#scrub').style.setProperty('--fill', (v / 367 * 100) + '%');
+}
+let toastTimer;
+function toast(msg) {
+  $('#toastText').textContent = msg;
+  const t = $('#toast'); t.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 2400);
+}
+
+/* ---------- wire up ---------- */
+$('#motion').addEventListener('click', e => {
+  const on = e.currentTarget.getAttribute('aria-pressed') === 'true';
+  e.currentTarget.setAttribute('aria-pressed', String(!on));
+  document.body.classList.toggle('motion-off', on);
+  if (!on) burst(e.clientX, e.clientY, 12);
+});
+$('#q').addEventListener('input', e => { S.q = e.target.value; renderProjects(); });
+$('#desc').addEventListener('change', e => { S.desc = e.target.checked; renderProjects(); });
+for (const id of ['s-recent', 's-stars', 's-name']) {
+  $('#' + id).addEventListener('change', e => { S.sort = e.target.value; renderProjects(); });
+}
+$('#scrub').addEventListener('input', e => renderScrub(+e.target.value));
+for (const t of document.querySelectorAll('.tab')) t.addEventListener('click', () => showTab(t.id.slice(2)));
+$('#mail').addEventListener('click', e => {
+  burst(e.clientX, e.clientY, 12);
+  location.href = 'mailto:rajshalem72@gmail.com?subject=Hi%20Shalem';
+});
+$('#copy').addEventListener('click', async e => {
+  try { await navigator.clipboard.writeText('rajshalem72@gmail.com'); toast('rajshalem72@gmail.com copied'); burst(e.clientX, e.clientY, 10); }
+  catch { toast('Copy failed — the address is rajshalem72@gmail.com'); }
+});
+for (const b of document.querySelectorAll('.rate button')) {
+  b.addEventListener('click', e => {
+    const v = +b.dataset.mark;
+    document.querySelectorAll('.rate button').forEach(x => x.setAttribute('aria-pressed', String(+x.dataset.mark <= v)));
+    localStorage.setItem('sr-bookmark', v);
+    toast(`Bookmarked ${v} of 5, saved in this browser`);
+    burst(e.clientX, e.clientY, 10);
+  });
+}
+
+/* ---------- year load, in surges ---------- */
+function loadYear() {
+  const bar = $('#prog'), pct = $('#progPct');
+  const stages = [18, 46, 52, 78, 100];
+  let i = 0;
+  (function next() {
+    if (i >= stages.length) return;
+    bar.style.width = stages[i] + '%'; pct.textContent = stages[i] + '%';
+    i++; setTimeout(next, 260 + i * 90);
+  })();
+}
+
+/* ---------- boot ---------- */
+$('#s-repos').textContent = DATA.repos.length;
+$('#s-contrib').textContent = DATA.cells.reduce((a, b) => a + b, 0);
+renderProjects();
+renderScrub(367);
+loadYear();
+const saved = +localStorage.getItem('sr-bookmark') || 0;
+document.querySelectorAll('.rate button').forEach(x => x.setAttribute('aria-pressed', String(+x.dataset.mark <= saved)));
+</script>
+</body>
+</html>
