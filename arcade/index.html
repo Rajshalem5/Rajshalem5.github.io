@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arcade — Rajshalem5</title>
+<meta name="description" content="Four playable UI sets: pinball controls, pixel worlds, a bubble-wrap room and a cockpit status display.">
+<style>
+  :root { --bg: #000; --ink: #e8ecf2; --dim: #8791a3; --gold: #ffc93a; --cyan: #5fe6ff; --line: #23262d; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { margin: 0; color: var(--ink); font: 14px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  a { color: var(--cyan); } :focus-visible { outline: 2.5px solid #fff; outline-offset: 3px; }
+  main { width: min(1100px, 100vw - 28px); margin: 0 auto; padding: 34px 0 60px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+  h1 { margin: 0; color: var(--gold); font-size: 22px; letter-spacing: .16em; }
+  header span { color: var(--dim); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+  p.lede { margin: 0 0 26px; color: var(--dim); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; }
+  section { margin: 0 0 30px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #07080a; }
+  .cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+  .cap b { color: var(--ink); } .cap span { color: var(--dim); }
+  iframe { display: block; width: 100%; height: min(72vh, 620px); border: 0; background: #000; }
+  footer { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 12px; line-height: 1.9; }
+</style>
+</head>
+<body>
+<main>
+  <header><h1>ARCADE</h1><span>4 sets · click, drag, type</span></header>
+  <p class="lede">Playable UI sets by finktheartist, framed live on this page. No accounts, no build step.</p>
+
+  <section>
+    <div class="cap"><b>Pinball UI</b><span>seven controls as pinball parts · <a href="https://github.com/finktheartist/pinball-ui">source</a></span></div>
+    <iframe src="https://pinball-ui.vercel.app" title="Pinball UI — playable pinball controls" loading="lazy" allow="fullscreen"></iframe>
+  </section>
+
+  <section>
+    <div class="cap"><b>Pixel worlds</b><span>pixel-art scenes inside controls · <a href="https://github.com/finktheartist/pixel-worlds">source</a></span></div>
+    <iframe src="https://pixel-worlds.vercel.app" title="Pixel worlds — living pixel-art controls" loading="lazy" allow="fullscreen"></iframe>
+  </section>
+
+  <section>
+    <div class="cap"><b>Bubble wrap</b><span>a 3D room of 43,000 bubbles · <a href="https://github.com/finktheartist/bubble-wrap-simulator">source</a></span></div>
+    <iframe src="https://bubble-wrap-simulator.vercel.app" title="Bubble wrap simulator" loading="lazy" allow="fullscreen"></iframe>
+  </section>
+
+  <section>
+    <div class="cap"><b>Cockpit UI</b><span>agent status display · <a href="/cockpit/">own page</a></span></div>
+    <iframe src="/cockpit/?embed=1" title="Cockpit UI — agent status display"></iframe>
+  </section>
+
+  <footer>
+    <a href="/">← profile console</a> · <a href="https://github.com/finktheartist/ui-sets">every set</a><br>
+    Pinball UI, Pixel worlds, Bubble wrap and Cockpit UI are MIT-licensed works by finktheartist; this page frames the live demos.
+  </footer>
+</main>
+</body>
+</html>
